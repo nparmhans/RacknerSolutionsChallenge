@@ -1,4 +1,4 @@
-# rackner-solutions-challenge
+# Rackner-Solutions-Challenge
 
 ## Getting Started
 
