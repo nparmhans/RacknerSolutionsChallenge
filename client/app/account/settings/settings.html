@@ -1,0 +1,118 @@
+<style>
+
+</style>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">Edit your Favorite Team's Information</div>
+    <div class="panel-body">
+      <div>
+        <ul class="list-group" ng-repeat="emp in vm.teams">
+          <li class="list-group-item">
+
+            <span ng-hide="editing" ng-click="editing = true">{{emp.name}} | {{emp.rank}} | {{emp.ground}} | <a ng-click="vm.delete($index)">Delete</a> </span>
+            <div class="container">
+              <form ng-show="editing" ng-submit="editing = false">
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Name</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" ng-model="emp.name" placeholder="Name" ng-required placeholder="Email">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Rank</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" ng-model="emp.rank" placeholder="Age" ng-required placeholder="Rank">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 col-form-label">Ground:</label>
+                  <div class="col-sm-5">
+                    <input type="text" class="form-control" ng-model="emp.ground" placeholder="Ground" ng-required placeholder="Ground">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="offset-sm-2 col-sm-5">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+          </li>
+        </ul>
+        <div>
+        </div>
+        <div class="container">
+          <form ng-show="vm.visible" class="form" name="form" ng-submit="vm.newteam(form,vm.newSquad)" novalidate>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Team Name:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" ng-model="vm.newSquad.name" placeholder="Team Name">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Rank:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" ng-model="vm.newSquad.rank" placeholder="Rank">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Ground:</label>
+              <div class="col-sm-5">
+                <input type="text" class="form-control" ng-model="vm.newSquad.ground" placeholder="Ground">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="offset-sm-2 col-sm-5">
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+    <a class="btn" ng-click="vm.visible = true"><i class="fa fa-plus"></i>Add New Team</a>
+  </div>
+</div>
+
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">Change Account Password</div>
+    <div class="panel-body">
+      <form class="form" name="form" ng-submit="vm.changePassword(form)" novalidate>
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Current Password</label>
+          <div class="col-sm-5">
+            <input type="password" class="form-control" ng-model="vm.user.oldPassword" mongoose-error placeholder="Current Password" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">New Password</label>
+          <div class="col-sm-5">
+            <input type="password" class="form-control" id="inputPassword3" ng-model="vm.user.newPassword" ng-minlength="3" required placeholder="New Password" />
+            <p class="help-block" ng-show="(form.newPassword.$error.minlength || form.newPassword.$error.required) && (form.newPassword.$dirty || vm.submitted)">
+              Password must be at least 3 characters.
+            </p>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label for="inputPassword3" class="col-sm-2 col-form-label">Confirm Password</label>
+          <div class="col-sm-5">
+            <input type="password" class="form-control" id="inputPassword3" ng-model="vm.user.confirmPassword" match="vm.user.newPassword" ng-minlength="3" required="" placeholder="Confirm Password" />
+          </div>
+        </div>
+        <p class="help-block"> {{ vm.message }} </p>
+        <div class="form-group row">
+          <div class="offset-sm-2 col-sm-5">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</div>
